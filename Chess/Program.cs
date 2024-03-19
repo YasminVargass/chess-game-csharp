@@ -1,5 +1,3 @@
-﻿using Chess.Tabuleiro;
+﻿using Chess.ChessBoard;
 
-Posicao p = new Posicao(3, 4);
-
-System.Console.WriteLine("Posição: " + p);
+Board board = new Board(8, 8);
