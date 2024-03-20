@@ -14,9 +14,14 @@ public class Board
         pieces = new Piece[rows, columns];
     }
 
-    public Piece piece(int row, int column)
+    public Piece Piece(int row, int column)
     {
         return pieces[row, column];
+    }
+    public void SetPiece(Piece p, Position pos)
+    {
+        pieces[pos.Row, pos.Column] = p;
+        p.Position = pos;
     }
 
 }
