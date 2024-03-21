@@ -6,14 +6,20 @@ try
 {
     Board board = new Board(8, 8);
 
+    // int row = 7;
+    // char column = 'c';
 
-    Position pos = new Position(1, 1);
-    Position pos2 = new Position(1, 5);
+    PositionChess pos = new PositionChess('c', 7);
+    System.Console.WriteLine(pos);
+    System.Console.WriteLine(pos.toPosition());
+
+    Position pos1 = new Position(7, 0);
+    Position pos2 = new Position(1, 2);
 
     King king = new King(Color.Black, board);
     Tower tower = new Tower(Color.White, board);
 
-    board.SetPiece(king, pos);
+    board.SetPiece(king, pos1);
     board.SetPiece(tower, pos2);
 
 
