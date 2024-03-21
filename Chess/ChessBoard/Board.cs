@@ -1,4 +1,6 @@
-﻿namespace Chess.ChessBoard;
+﻿using Chess.Exceptions;
+
+namespace Chess.ChessBoard;
 
 public class Board
 {
@@ -18,10 +20,34 @@ public class Board
     {
         return pieces[row, column];
     }
-    public void SetPiece(Piece p, Position pos)
+
+    public Piece Piece(Position pos)
     {
-        pieces[pos.Row, pos.Column] = p;
-        p.Position = pos;
+        return pieces[pos.Row, pos.Column];
     }
 
+    public bool HasPiece(Position pos)
+    {
+        ValidPosition(pos);
+        return Piece(pos) != null;
+
+    }
+
+    public void ValidPosition(Position pos)
+    {
+        if (pos.Row < 0 || pos.Row > Rows || pos.Column < 0 || pos.Column > Columns)
+        {
+            throw new PositionException("Posição inválida!");
+        }
+    }
+
+    public void SetPiece(Piece p, Position pos)
+    {
+        if (HasPiece(pos))
+        {
+            throw new PositionException("Já existe uma peça nessa posição!");
+        }
+        pieces[pos.Row, pos.Column] = p; // A peça[1,1] é um rei
+        p.Position = pos; //A posição do rei é a 1,1
+    }
 }

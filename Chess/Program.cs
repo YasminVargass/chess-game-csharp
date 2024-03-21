@@ -1,11 +1,26 @@
 ﻿using Chess;
 using Chess.ChessBoard;
 using Chess.ChessGame;
+using Chess.Exceptions;
+try
+{
+    Board board = new Board(8, 8);
 
-Board board = new Board(8, 8);
-Position p = new Position(1, 1);
 
-board.SetPiece(new King(Color.Black, board), new Position(0, 0));
-board.SetPiece(new Tower(Color.Black, board), new Position(1, 3));
+    Position pos = new Position(1, 1);
+    Position pos2 = new Position(1, 5);
 
-Screen.PrintScreen(board);
+    King king = new King(Color.Black, board);
+    Tower tower = new Tower(Color.White, board);
+
+    board.SetPiece(king, pos);
+    board.SetPiece(tower, pos2);
+
+
+
+    Screen.PrintScreen(board);
+}
+catch (PositionException e)
+{
+    System.Console.WriteLine(e.Message);
+}
