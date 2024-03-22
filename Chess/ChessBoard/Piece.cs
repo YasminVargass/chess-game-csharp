@@ -14,5 +14,8 @@ public class Piece
         Movements = 0;
     }
 
-
+    public void IncreaseMovements()
+    {
+        Movements++;
+    }
 }

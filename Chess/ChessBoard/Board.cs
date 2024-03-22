@@ -7,23 +7,23 @@ public class Board
     public int Rows { get; private set; }
     public int Columns { get; private set; }
 
-    private Piece[,] pieces;
+    private Piece[,] _pieces;
 
     public Board(int rows, int columns)
     {
         Rows = rows;
         Columns = columns;
-        pieces = new Piece[rows, columns];
+        _pieces = new Piece[rows, columns];
     }
 
     public Piece Piece(int row, int column)
     {
-        return pieces[row, column];
+        return _pieces[row, column];
     }
 
     public Piece Piece(Position pos)
     {
-        return pieces[pos.Row, pos.Column];
+        return _pieces[pos.Row, pos.Column];
     }
 
     public bool HasPiece(Position pos)
@@ -47,7 +47,19 @@ public class Board
         {
             throw new PositionException("Já existe uma peça nessa posição!");
         }
-        pieces[pos.Row, pos.Column] = p; // A peça[1,1] é um rei
+        _pieces[pos.Row, pos.Column] = p; // A peça[1,1] é um rei
         p.Position = pos; //A posição do rei é a 1,1
+    }
+
+    public Piece RemovePiece(Position pos)
+    {
+        if (Piece(pos) == null)
+        {
+            return null;
+        }
+        Piece aux = Piece(pos);
+        aux.Position = null;
+        _pieces[pos.Row, pos.Column] = null;
+        return aux;
     }
 }

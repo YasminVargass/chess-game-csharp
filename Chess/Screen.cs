@@ -1,4 +1,5 @@
 ﻿using Chess.ChessBoard;
+using Chess.ChessGame;
 namespace Chess;
 
 public class Screen
@@ -26,8 +27,15 @@ public class Screen
         }
         System.Console.Write("  " + "A B C D E F G H");
 
+        System.Console.WriteLine();
     }
-
+    public static PositionChess ReadPlay()
+    {
+        string s = Console.ReadLine();
+        char column = s[0];
+        int row = int.Parse(s[1] + "");
+        return new PositionChess(column, row);
+    }
     public static void PrintPiece(Piece piece)
     {
         if (piece.Color == Color.White)
@@ -37,7 +45,7 @@ public class Screen
         else
         {
             ConsoleColor standard = Console.ForegroundColor;
-            Console.ForegroundColor = ConsoleColor.Black;
+            Console.ForegroundColor = ConsoleColor.Yellow;
             System.Console.Write(piece);
             Console.ForegroundColor = standard;
         }
